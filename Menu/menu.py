@@ -1,21 +1,39 @@
 menu_options = {
-    1: 'Option 1',
-    2: 'Option 2',
-    3: 'Option 3',
-    4: 'Exit',
+    1: 'Registar_usuario',
+    2: 'Login_usuario',
+    3: 'Reserva_bilhete',
+    4: 'Alteraçao_bilhete',
+    5: 'Saida',
 }
 
 def print_menu():
     for key in menu_options.keys():
         print (key, '--', menu_options[key] )
 
-def option1():
-     print('Handle option \'Option 1\'')
+def Registar_usuario():
+    arq = open("registados.txt", "a")
+    print("Registe uma nova conta!")
+    nome_usuario = input("Digite o seu nome de usuário: ")
+    
+    arq.write("{}\n".format(nome_usuario))
+    print ("Registo realizado com sucesso")
 
-def option2():
+def Login_usuario():
+    arq = open("registados.txt")
+    print("Efetue o login")
+    nome_login = input("Digite o seu nome de usuario: ")
+    
+    registados = arq.readlines()
+    if nome_login + "\n" in registados:
+        print("Bem vindo, {}.".format(nome_login))
+    else:
+        print("Nome de usuario incorreto.")
+    arq.close()
+
+def Reserva_bilhete():
      print('Handle option \'Option 2\'')
 
-def option3():
+def Alteraçao_bilhete():
      print('Handle option \'Option 3\'')
 
 if __name__=='__main__':
@@ -23,18 +41,28 @@ if __name__=='__main__':
         print_menu()
         option = ''
         try:
-            option = int(input('Enter your choice: '))
+            option = int(input('Escolha uma opção: '))
         except:
-            print('Wrong input. Please enter a number ...')
-        #Check what choice was entered and act accordingly
+            print('Por favor digite um número...')
         if option == 1:
-           option1()
+            Registar_usuario()
         elif option == 2:
-            option2()
+            Login_usuario()
         elif option == 3:
-            option3()
+            Reserva_bilhete()
         elif option == 4:
-            print('Thanks message before exiting')
+            Alteraçao_bilhete()
+        elif option == 5:
+            print('Obrigado, volte sempre')
             exit()
         else:
-            print('Invalid option. Please enter a number between 1 and 4.')
+            print('Opção invalida, digite um número entre 1 e 4')
+
+
+
+
+
+
+
+
+
